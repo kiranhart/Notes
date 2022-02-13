@@ -1,0 +1,48 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        Int         @id @default(autoincrement())
+  firstName String
+  lastName  String
+  email     String
+  password  String
+  createdAt DateTime    @default(now())
+  updatedAt DateTime    @updatedAt
+  NoteGroup NoteGroup[]
+  Note      Note[]
+}
+
+model Note {
+  id          Int        @id @default(autoincrement())
+  title       String
+  content     String
+  color       String
+  public      Boolean
+  owner       User       @relation(fields: [userId], references: [id])
+  group       NoteGroup? @relation(fields: [noteGroupId], references: [id])
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
+  userId      Int
+  noteGroupId Int?
+}
+
+model NoteGroup {
+  id          Int      @id @default(autoincrement())
+  name        String
+  description String
+  owner       User     @relation(fields: [userId], references: [id])
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  userId      Int
+  Note        Note[]
+}

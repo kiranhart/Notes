@@ -46,7 +46,7 @@ const registerUser = asyncHandler(async (req, res) => {
             firstName: user.firstName,
             lastName: user.lastName,
             email: user.email,
-            token: generateToken(user.id)
+            token: generateToken(user.id, user.firstName, user.lastName, user.email)
         });
     } else {
         res.status(400);
@@ -78,11 +78,7 @@ const loginUser = asyncHandler(async (req, res) => {
 
     if (user && (await bcrypt.compare(password, user.password))) {
         res.status(200).json({
-            id: user.id,
-            firstName: user.firstName,
-            lastName: user.lastName,
-            email: user.email,
-            token: generateToken(user.id)
+            token: generateToken(user.id, user.firstName, user.lastName, user.email)
         });
     } else {
         res.status(400);
@@ -131,10 +127,14 @@ const deleteUser = asyncHandler(async (req, res) => {
     });
 });
 
-const generateToken = (id) => {
-    return jwt.sign({ id }, process.env.JWT_SECRET, {
-        expiresIn: '1h'
-    });
+const generateToken = (id, firstName, lastName, email) => {
+    return jwt.sign(
+        { id, firstName, lastName, email },
+        process.env.JWT_SECRET,
+        {
+            expiresIn: '30d'
+        }
+    );
 };
 
 module.exports = {

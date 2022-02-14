@@ -4,10 +4,12 @@ import 'react-toastify/dist/ReactToastify.css';
 import { useEffect, useRef } from 'react';
 import axios from 'axios';
 import { useNavigate, Link } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-import { login } from '../redux/actions/authActions';
+import { useSelector, useDispatch } from 'react-redux';
+import { register } from '../redux/actions/authActions';
 
-const Login = () => {
+const Register = () => {
+    const firstNameRef = useRef(null);
+    const lastNameRef = useRef(null);
     const emailRef = useRef(null);
     const passwordRef = useRef(null);
     const navigate = useNavigate();
@@ -24,39 +26,44 @@ const Login = () => {
     const handleLogin = async (event) => {
         event.preventDefault();
 
+        const firstName = firstNameRef.current.value;
+        const lastName = lastNameRef.current.value;
         const email = emailRef.current.value;
         const password = passwordRef.current.value;
 
-        if (!email || !password) {
+        if (!firstName || !lastName || !email || !password) {
             toast.error('Please fill in all fields');
             return;
         }
 
-        dispatch(login(email, password));
+        dispatch(register(firstName, lastName, email, password));
+        navigate('/');
     };
 
     return (
-        <LoginWrapper>
-            <LoginCard>
+        <RegisterWrapper>
+            <RegisterCard>
                 <div className='heading'>
-                    <h1>Login</h1>
+                    <h1>Sign Up</h1>
                     <h3>
-                        Don't have an account? <Link to='/register'>Sign up</Link>
+                        Already have an account? <Link to='/login'>Login</Link>
                     </h3>
                 </div>
                 <form>
-                    <input ref={emailRef} type='email' id='email' placeholder='E-mail' />
+                    <input ref={firstNameRef} type='text' id='firstName' placeholder='First Name' />
+                    <input ref={lastNameRef} type='text' id='lastName' placeholder='Last Name' />
+                    <input ref={emailRef} type='email' id='email' placeholder='Email' />
                     <input ref={passwordRef} type='password' id='password' placeholder='Password' />
                     <button onClick={handleLogin} type='submit'>
-                        Login
+                        Sign Up
                     </button>
                 </form>
-            </LoginCard>
-        </LoginWrapper>
+            </RegisterCard>
+        </RegisterWrapper>
     );
 };
 
-const LoginWrapper = styled.div`
+const RegisterWrapper = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
@@ -106,7 +113,7 @@ const LoginWrapper = styled.div`
     }
 `;
 
-const LoginCard = styled.div`
+const RegisterCard = styled.div`
     padding: 3rem 4rem;
     background: #fff;
     color: #111;
@@ -172,4 +179,4 @@ const LoginCard = styled.div`
     }
 `;
 
-export default Login;
+export default Register;

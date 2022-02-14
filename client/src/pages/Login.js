@@ -17,7 +17,7 @@ const Login = () => {
 
     useEffect(() => {
         if (auth.id) {
-            return navigate('/');
+            return navigate('/dashboard');
         }
     }, [auth]);
 
@@ -60,50 +60,7 @@ const LoginWrapper = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
-
-    background: linear-gradient(200deg, #bfb2f3, #96caf7, #9cdcaa, #e5e1ab, #f3c6a5, #f8a3a8);
-    background-size: 1200% 1200%;
-
-    -webkit-animation: PastelGradientAnimation 30s ease infinite;
-    -moz-animation: PastelGradientAnimation 30s ease infinite;
-    animation: PastelGradientAnimation 30s ease infinite;
-
-    @-webkit-keyframes PastelGradientAnimation {
-        0% {
-            background-position: 0% 40%;
-        }
-        50% {
-            background-position: 100% 61%;
-        }
-        100% {
-            background-position: 0% 40%;
-        }
-    }
-
-    @-moz-keyframes PastelGradientAnimation {
-        0% {
-            background-position: 0% 40%;
-        }
-        50% {
-            background-position: 100% 61%;
-        }
-        100% {
-            background-position: 0% 40%;
-        }
-    }
-
-    @keyframes PastelGradientAnimation {
-        0% {
-            background-position: 0% 40%;
-        }
-        50% {
-            background-position: 100% 61%;
-        }
-        100% {
-            background-position: 0% 40%;
-        }
-    }
+    height: 100%;
 `;
 
 const LoginCard = styled.div`
@@ -111,7 +68,7 @@ const LoginCard = styled.div`
     background: #fff;
     color: #111;
     border-radius: 1rem;
-    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.3);
     width: 30rem;
 
     display: flex;

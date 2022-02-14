@@ -39,7 +39,6 @@ const addNote = asyncHandler(async (req, res) => {
     });
 
     res.status(200).json({
-        message: 'Set Note',
         note
     });
 });

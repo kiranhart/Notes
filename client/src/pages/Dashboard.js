@@ -2,8 +2,9 @@ import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import styled from 'styled-components';
 
-import NoteGroupList from '../components/NoteGroupList';
 import NoteList from '../components/NoteList';
+import AddNote from '../components/AddNote';
+
 import { loadUser } from '../redux/actions/authActions';
 import { getNotes } from '../redux/actions/noteActions';
 
@@ -32,10 +33,8 @@ const Dashboard = () => {
             <hr />
 
             <Section>
-                <br />
-                <h2>Note Groups</h2>
-                <p>Groups are used to categorize your notes.</p>
-                <p>No Groups Yet</p>
+                <h2>New Note</h2>
+                <AddNote />
             </Section>
         </Wrapper>
     );
@@ -43,13 +42,35 @@ const Dashboard = () => {
 const Section = styled.section``;
 
 const Wrapper = styled.div`
-    width: 80%;
     margin: 0 auto;
-    margin-top: 2rem;
     line-height: 1.5;
 
     hr {
         margin: 1rem 0;
+    }
+`;
+
+const FloatingAddButton = styled.div`
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+    background-color: #30a644;
+    color: white;
+    border: none;
+    padding: 1rem;
+    font-size: 1.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+
+    transition: all 0.2s ease-in-out;
+
+    &:hover {
+        background-color: #31d44c;
     }
 `;
 

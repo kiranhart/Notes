@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Routes, Route, useNavigate } from 'react-router-dom';
+import { Routes, Route, useNavigate, Navigate } from 'react-router-dom';
 import { toast, ToastContainer } from 'react-toastify';
 import Login from './pages/Login';
 import Register from './pages/Register';
@@ -15,9 +15,17 @@ import styled from 'styled-components';
 
 const App = () => {
     const dispatch = useDispatch();
+    const auth = useSelector((state) => state.auth);
+    const navigate = useNavigate();
 
     useEffect(() => {
         dispatch(loadUser());
+
+        if (auth.id) {
+            navigate('/dashboard');
+        } else {
+            navigate('/login');
+        }
     }, []);
 
     return (
@@ -49,7 +57,7 @@ const App = () => {
 const LayoutWrapper = styled.div`
     display: grid;
     grid-template-columns: 13vw 1fr;
-    grid-template-rows: calc(100vh - 1.6rem);
+    grid-template-rows: minmax(calc(100vh - 1.6rem), 1fr);
 `;
 
 export default App;

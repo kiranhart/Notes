@@ -24,3 +24,26 @@ export const getNotes = () => {
             });
     };
 };
+
+export const addNote = (title, content, color) => {
+    return (dispatch) => {
+        axios
+            .post('http://localhost:5000/notes', { title, content, color }, setHeaders())
+            .then((response) => {
+                const { note } = response.data;
+
+                dispatch({
+                    type: 'ADD_NOTE',
+                    note,
+                });
+            })
+            .catch((error) => {
+                if (error.response) {
+                    console.log(error.response);
+                    toast.error(error.response.data.message, {
+                        position: toast.POSITION.BOTTOM_RIGHT,
+                    });
+                }
+            });
+    };
+};

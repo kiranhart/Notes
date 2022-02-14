@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 
 import logoImage from '../assets/logo.png';
 import { useSelector, useDispatch } from 'react-redux';
@@ -9,9 +9,11 @@ import { logout } from '../redux/actions/authActions';
 const Navbar = () => {
     const auth = useSelector((state) => state.auth);
     const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     const handleLogout = () => {
         dispatch(logout());
+        navigate('/login');
     };
 
     return (
@@ -21,15 +23,18 @@ const Navbar = () => {
                 <h1>NOTES</h1>
             </div>
             <ul>
-                <NavLink to='/'>Home</NavLink>
-                <NavLink to='/dashboard' className={(data) => (data.isActive ? 'active' : '')}>
-                    Dashboard
-                </NavLink>
-                <NavLink to='/settings'>Settings</NavLink>
+                {!auth && <NavLink to='/'>Home</NavLink>}
+                {auth.id && (
+                    <NavLink to='/dashboard' className={(data) => (data.isActive ? 'active' : '')}>
+                        Dashboard
+                    </NavLink>
+                )}
             </ul>
-            <div className='button-logout'>
-                <button onClick={handleLogout}>Logout</button>
-            </div>
+            {auth.id && (
+                <div className='button-logout'>
+                    <button onClick={handleLogout}>Logout</button>
+                </div>
+            )}
         </NavbarContainer>
     );
 };

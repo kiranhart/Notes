@@ -6,10 +6,11 @@ const ContentSection = ({ children }) => {
 };
 
 const Wrapper = styled.div`
-    background: #ededed;
+    background: #fff;
     color: #111;
     border-radius: 1rem;
-    height: 100%;
+    height: auto;
+    padding: 2rem;
 `;
 
 export default ContentSection;

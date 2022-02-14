@@ -58,6 +58,33 @@ const LayoutWrapper = styled.div`
     display: grid;
     grid-template-columns: 13vw 1fr;
     grid-template-rows: minmax(calc(100vh - 1.6rem), 1fr);
+
+    @media only screen and (max-width: 1150px) {
+        display: flex;
+        flex-direction: column;
+
+        .navbar {
+            width: 50%;
+            margin: 0 auto;
+            gap: 1rem;
+        }
+
+        .content-section {
+            width: 100%;
+            margin: 0 auto;
+            padding: 1rem;
+
+            form {
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+
+                input[type='color'] {
+                    width: 100%;
+                }
+            }
+        }
+    }
 `;
 
 export default App;

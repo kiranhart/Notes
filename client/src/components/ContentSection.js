@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 const ContentSection = ({ children }) => {
-    return <Wrapper>{children}</Wrapper>;
+    return <Wrapper className='content-section'>{children}</Wrapper>;
 };
 
 const Wrapper = styled.div`

@@ -25,16 +25,16 @@ const Dashboard = () => {
             <hr />
 
             <Section>
-                <br />
-                <h2>Notes</h2>
-                {notes && notes.length > 0 ? <NoteList notes={notes} /> : <p>No notes yet</p>}
+                <h2>New Note</h2>
+                <AddNote />
             </Section>
 
             <hr />
 
             <Section>
-                <h2>New Note</h2>
-                <AddNote />
+                <br />
+                <h2>Notes</h2>
+                {notes && notes.length > 0 ? <NoteList notes={notes} /> : <p>No notes yet</p>}
             </Section>
         </Wrapper>
     );

@@ -6,8 +6,12 @@
 ![Signup Image](signup-preview.png)
 ---
 
-## __Features__
+### __TODO__
+- [❌] Allow note updating
+- [❌] Note categorization into notes
 
+
+## __Features__
 - ## Backend
     - REST API
     - JWT Authentication

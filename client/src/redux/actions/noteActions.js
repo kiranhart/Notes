@@ -25,6 +25,29 @@ export const getNotes = () => {
     };
 };
 
+export const removeNote = (id) => {
+    return (dispatch) => {
+        axios
+            .delete(`http://localhost:5000/notes/${id}`, setHeaders())
+            .then((response) => {
+                const { id } = response.data;
+
+                dispatch({
+                    type: 'REMOVE_NOTE',
+                    id,
+                });
+            })
+            .catch((error) => {
+                if (error.response) {
+                    console.log(error.response);
+                    toast.error(error.response.data.message, {
+                        position: toast.POSITION.BOTTOM_RIGHT,
+                    });
+                }
+            });
+    }
+}
+
 export const addNote = (title, content, color) => {
     return (dispatch) => {
         axios

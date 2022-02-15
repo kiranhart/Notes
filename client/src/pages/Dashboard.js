@@ -16,12 +16,12 @@ const Dashboard = () => {
     useEffect(() => {
         dispatch(loadUser());
         dispatch(getNotes());
-    }, []);
+    }, [notes]);
 
     return (
         <Wrapper>
             <h1>Welcome {auth.firstName}</h1>
-            <p>This is your dashboard, you can create, edit, and delete notes from here.</p>
+            <p>This is your dashboard, you can view, create and delete notes from here.</p>
             <hr />
 
             <Section>

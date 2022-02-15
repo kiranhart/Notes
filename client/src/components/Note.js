@@ -1,8 +1,8 @@
 import { motion } from 'framer-motion';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
-import { removeNote } from '../redux/actions/noteActions';
+import { getNotes, removeNote } from '../redux/actions/noteActions';
 
 const Note = ({ note }) => {
     const dispatch = useDispatch();

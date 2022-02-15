@@ -15,8 +15,11 @@ const Dashboard = () => {
 
     useEffect(() => {
         dispatch(loadUser());
+    }, []);
+
+    useEffect(() => {
         dispatch(getNotes());
-    }, [notes]);
+    }, [dispatch]);
 
     return (
         <Wrapper>

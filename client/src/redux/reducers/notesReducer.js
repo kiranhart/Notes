@@ -12,7 +12,7 @@ const noteReducer = (state = initialState, action) => {
         case 'ADD_NOTE':
             return [...state, action.note];
         case 'REMOVE_NOTE':
-            return state.filter((note) => note.id !== action.id);
+            return state.filter((note) => note.id != action.id);
         case 'CLEAR_NOTES':
             return [];
         default:

@@ -1,11 +1,11 @@
 import axios from 'axios';
 import { toast } from 'react-toastify';
-import { setHeaders } from '../../util';
+import { API_URL, setHeaders } from '../../util';
 
 export const getNotes = () => {
     return (dispatch) => {
         axios
-            .get('http://localhost:5000/notes', setHeaders())
+            .get(`${API_URL}/notes`, setHeaders())
             .then((response) => {
                 const { notes } = response.data;
 
@@ -28,7 +28,7 @@ export const getNotes = () => {
 export const removeNote = (id) => {
     return (dispatch) => {
         axios
-            .delete(`http://localhost:5000/notes/${id}`, setHeaders())
+            .delete(`${API_URL}/notes/${id}`, setHeaders())
             .then((response) => {
                 const { id } = response.data;
 
@@ -45,13 +45,13 @@ export const removeNote = (id) => {
                     });
                 }
             });
-    }
-}
+    };
+};
 
 export const addNote = (title, content, color) => {
     return (dispatch) => {
         axios
-            .post('http://localhost:5000/notes', { title, content, color }, setHeaders())
+            .post(`${API_URL}/notes`, { title, content, color }, setHeaders())
             .then((response) => {
                 const { note } = response.data;
 

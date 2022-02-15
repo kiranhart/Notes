@@ -1,10 +1,11 @@
 import axios from 'axios';
 import { toast } from 'react-toastify';
+import { API_URL } from '../../util';
 
 export const login = (email, password) => {
     return (dispatch) => {
         axios
-            .post('http://localhost:5000/users/login', { email, password })
+            .post(`${API_URL}/users/login`, { email, password })
             .then((response) => {
                 const { token } = response.data;
                 localStorage.setItem('token', token);
@@ -28,7 +29,7 @@ export const login = (email, password) => {
 export const register = (firstName, lastName, email, password) => {
     return (dispatch) => {
         axios
-            .post('http://localhost:5000/users', {
+            .post(`${API_URL}/users`, {
                 firstName,
                 lastName,
                 email,

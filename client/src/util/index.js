@@ -5,3 +5,5 @@ export const setHeaders = () => {
 
     return headers;
 };
+
+export const API_URL = 'https://notes-app-server.vercel.app';
